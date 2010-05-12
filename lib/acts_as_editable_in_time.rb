@@ -1,10 +1,10 @@
 module ActiveRecord
-  module Acts #:nodoc:
-    module EditableInTime #:nodoc:
+  module Acts
+    module EditableInTime
       def self.included(base)
         base.extend(ClassMethods)
       end
-                
+
       module ClassMethods
         attr_accessor :editable_after, :editable_for
         def editable(params = {})
@@ -13,7 +13,7 @@ module ActiveRecord
           @editable_after = "#{params[:after]}d_at"
           @editable_for = params[:for]
           include ActiveRecord::Acts::EditableInTime::InstanceMethods
-          self.send(:validate, :is_editable)
+          self.send(:validate, :is_editable) unless params[:validate] == false
         end
       end
 
