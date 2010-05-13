@@ -7,7 +7,7 @@ module ActiveRecord
 
       module ClassMethods
         attr_accessor :editable_after, :editable_for
-        def editable(params = {})
+        def acts_as_editable_in_time(params = {})
           raise "Invalid :after params : #{params[:after]}" unless %w{create update}.include?(params[:after].to_s)
           raise "You have to specify the duration" if params[:for].blank?
           @editable_after = "#{params[:after]}d_at"
@@ -24,7 +24,7 @@ module ActiveRecord
         end
 
         def is_editable
-          errors.add('not_editable') unless editable?
+          errors.add_to_base('not_editable') unless editable?
         end
 
       end

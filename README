@@ -13,7 +13,7 @@ Example
 =======
 
 class Report << ActiveRecord::Base
-	editable :after => :update, :for => 10.hours
+	acts_as_editable_in_time :after => :update, :for => 10.hours
 end
 
 @report = Report.create
