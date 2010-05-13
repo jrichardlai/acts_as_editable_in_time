@@ -13,7 +13,7 @@ module ActiveRecord
           @editable_after = "#{params[:after]}d_at"
           @editable_for = params[:for]
           include ActiveRecord::Acts::EditableInTime::InstanceMethods
-          self.send(:validate, :is_editable) unless params[:validate] == false
+          self.send(:validate, :is_editable, :unless => :new_record?) unless params[:validate] == false
         end
       end
 
