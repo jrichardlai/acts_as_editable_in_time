@@ -1,22 +1,24 @@
-ActsAsEditableInTime
-====================
+# ActsAsEditableInTime
+
 
 This plugin allow to set a validation on time an ActiveRecord object after update or create date.
 
-Options
-=======
+## Options
 
+```
 :after => :update or :create
 :for => valid duration for the record
+```
 
-Example
-=======
+## Example
 
+```ruby
 class Report << ActiveRecord::Base
 	acts_as_editable_in_time :after => :update, :for => 10.hours
 end
 
 @report = Report.create
 @report.editable? => true
+```
 
 Copyright (c) 2010 [name of plugin creator], released under the MIT license
